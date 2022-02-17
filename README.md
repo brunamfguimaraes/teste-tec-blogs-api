@@ -1,0 +1,1 @@
+# teste-tec-blogs-api
