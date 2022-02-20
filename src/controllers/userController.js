@@ -1,15 +1,13 @@
 const userService = require('../services/userServices');
-
-// const JWTgenerate = require('../middlewares/JWTgenerate');
-
+const JWTgenerate = require('../middlewares/jwtGenerate');
 const codes = require('../middlewares/codes');
 
-// const secret = 'meusecretdetoken';
+const secret = 'meusecretdetoken';
 
-/* const jwtConfig = {
+const jwtConfig = {
   expiresIn: '7d',
   algorithm: 'HS256',
-}; */
+};
 
 const create = async (req, res) => {
   try {
@@ -25,7 +23,7 @@ const create = async (req, res) => {
   }
 };
 
-/* const createLogin = async (req, res) => {
+const createLogin = async (req, res) => {
   try {
     const loginData = req.body;
     const user = await userService.createLogin(loginData);
@@ -37,9 +35,9 @@ const create = async (req, res) => {
     const { code, message } = error;
     return res.status(code).json({ message });
   }
-}; */
+};
 
-/* const getUsers = async (_req, res) => {
+const getUsers = async (_req, res) => {
   try {
       const users = await userService.getUsers();
       return res.status(codes.ok).json(users);
@@ -47,18 +45,32 @@ const create = async (req, res) => {
     const { code, message } = error;
       return res.status(code).json({ message });
   }
-}; */
+};
 
-/* const getById = async (req, res) => {
+const getById = async (req, res) => {
   const { id } = req.params;
   try {
     const user = await userService.getById(id);
-
     res.status(codes.ok).json(user);
   } catch (error) {
     const { code, message } = error;
       return res.status(code).json({ message });
   }
-}; */
+};
 
-module.exports = { create, createLogin, getUsers, getById };
+
+const removeUser = async (req, res) => {
+  const { id } = req.user;
+  try {
+    const user = await userService.removeUser(id);
+    res.status(codes.noContent).json(user);
+  } catch (error) {
+    const { code, message } = error;
+    return res.status(code).json({ message });
+  }
+};
+
+
+
+
+module.exports = { create, createLogin, getUsers, getById, removeUser };
