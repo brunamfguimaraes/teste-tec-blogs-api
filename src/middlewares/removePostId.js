@@ -1,4 +1,4 @@
-const removePostId = ({ title, content, userId}) => {
+const removePostId = ({ title, content, userId }) => {
   const postWithoutId = { title, content, userId };
   return postWithoutId;
 };
