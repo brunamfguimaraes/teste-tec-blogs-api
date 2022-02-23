@@ -7,6 +7,7 @@
 
 ## Para clonar o repositório:
 ● cd "diretorio de sua preferencia";
+
 ● git clone https://github.com/brunamfguimaraes/teste-tec-blogs-api.git
 
 
