@@ -1,39 +1,38 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
-const server = require('../index')
+const server = require('../src/routers/userRouter')
 chai.use(chaiHttp);
+
+const url = 'http://localhost:3000';
 
 const { expect } = chai;
 
 describe('/POST Chama a função create', () => {
   describe('quando usuário é criado com sucesso', () => {
-   // let response = {};
+    let newUser = {
+      displayName: "Testando a aplicação",
+      email: "email@email.com",
+      password: "1234567",
+      image: "https://images-na.ssl-images-amazon.com/images/I/91+5a2Dr+5L.jpg",
+  }
+    it('retorna o código de status 201', async () => {
 
-    it('retorna o código de status 201', async (done) => {
-      chai.request(server)
-      .post('/user')
+      response = await chai.request(server)
+      .post(`${url}/user`)
       .end((err, res) => {
-        res.should.have.status(401);
-        res.body.should.have.property('message').eql('Acesso negado');
-        done();
+        res.should.have.status(201);
       })
-     /*  const response = await userController();
-      expect(response).to.have.status(201); */
     });
 
     it('retorna um objeto', () => {
-      expect(response.body).to.be.a('object');
+      expect(newUser).to.be.a('object');
     });
 
-    it('o objeto possui a propriedade "message"', () => {
-      expect(response.body).to.have.property('message');
+    it('o objeto possui a propriedade "email", "displayName" e "password"', () => {
+      expect(newUser).to.have.property('displayName');
+      expect(newUser).to.have.property('email');
+      expect(newUser).to.have.property('password');
     });
-
-    it('a propriedade "message" possui o texto "Novo usuário criado com sucesso"',
-      () => {
-        expect(response.body.message)
-          .to.be.equal('Novo usuário criado com sucesso');
-      });
   });
 });
