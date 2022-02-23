@@ -40,4 +40,10 @@ const removeUser = async (id) => {
   return removeUser;
 };
 
-module.exports = { create, createLogin, getUsers, getById, removeUser };
+module.exports = {
+  create,
+  createLogin,
+  getUsers,
+  getById,
+  removeUser,
+};

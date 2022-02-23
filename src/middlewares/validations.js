@@ -55,7 +55,6 @@ const verifyCreateLogin = async (email, password) => {
 };
 
 const verifyFieldsPost = async ({ title, content}) => {
-
   if (!title) {
     throw new Indexerror(codes.badRequest, errorMessages.titleIsRequired);
   }

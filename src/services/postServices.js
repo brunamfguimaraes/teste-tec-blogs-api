@@ -63,6 +63,11 @@ const deletePost = async (id, idUser) => {
   return removeUser;
 };
 
+/* Para criar o requisito abaixo:
+https://stackabuse.com/using-sequelize-orm-with-nodejs-and-express/
+https://sequelize.org/v4/manual/tutorial/querying.html
+https://stackoverflow.com/questions/53971268/node-sequelize-find-where-like-wildcard
+*/
 
 const getByQueryParam = async (query) => {
   if (!query) return getAllPosts();
