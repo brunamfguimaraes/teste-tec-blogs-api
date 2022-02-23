@@ -15,5 +15,5 @@ module.exports = {
   titleIsRequired: '"title" is required',
   contentIsRequired: '"content" is required',
   postDoesntExist: 'Post não existe',
-  categoryIdIsRequired: '"categoryIds" is required',
+  userUnauthorized: "Usuário não autorizado",
 };

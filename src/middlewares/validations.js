@@ -1,5 +1,4 @@
 const { User } = require('../database/models');
-//const { Post } = require('../database/models');
 const codes = require('./codes');
 const Indexerror = require('./Indexerror');
 const errorMessages = require('./errorMessages');
@@ -12,7 +11,7 @@ const validateName = (displayName, min) => {
 
 const verifyEmail = (email) => {
   const re = /^\w+[\W_]?\w*@[a-z]+\.[a-z]{2,3}(?:.br)?$/;
-  return re.test(email);
+    return re.test(email);
  };
 
  const emailAlreadyExists = async (email) => {
@@ -25,7 +24,7 @@ const verifyEmail = (email) => {
   if (!email) throw new Indexerror(codes.badRequest, errorMessages.emailIsRequired);
   if (!verifyEmail(email)) {
     throw new Indexerror(codes.badRequest, errorMessages.invalidEmail);
-}
+  }
 };
 
 const passwordValidate = (password, min) => {
@@ -33,7 +32,7 @@ const passwordValidate = (password, min) => {
   if (!password) throw new Indexerror(codes.badRequest, errorMessages.passwordisrequired);
   if (password.length < min) {
     throw new Indexerror(codes.badRequest, errorMessages.invalidPassword);
-}
+  }
 };
 
 const verifyCreateUser = async (displayName, email, password) => {
@@ -55,21 +54,6 @@ const verifyCreateLogin = async (email, password) => {
   }
 };
 
-/* const verifyNameCategory = (name) => {
-  if (!name) {
-    throw new Indexerror(codes.badRequest, errorMessages.nameIsRequired);
-  }
-}; */
-
-/* const validateId = async (id) => {
-  console.log(id)
-  const getAllUsersIds = await User.findAll();
-  console.log(getAllUsersIds)
-  const getIds = getAllUsersIds.map((usuarioid) => usuarioid.id);
-  const getAllIds = id.every((ids) => getIds.includes(ids));
-  return getAllIds;
-}; */
-
 const verifyFieldsPost = async ({ title, content}) => {
 
   if (!title) {
@@ -78,13 +62,10 @@ const verifyFieldsPost = async ({ title, content}) => {
   if (!content) {
     throw new Indexerror(codes.badRequest, errorMessages.contentIsRequired);
   }
-/*   if (!id) {
-    throw new Indexerror(codes.badRequest, errorMessages.categoryIdIsRequired);
-  }
-  const idsExists = await validateId(id);
-  if (!idsExists) {
-    throw new Indexerror(codes.badRequest, errorMessages.categoryIdIsNotFound);
-  } */
 };
 
-module.exports = { verifyCreateUser, verifyCreateLogin, verifyFieldsPost };
+module.exports = {
+  verifyCreateUser,
+  verifyCreateLogin,
+  verifyFieldsPost,
+};

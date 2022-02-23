@@ -13,13 +13,11 @@ const create = async (req, res) => {
   try {
     const userData = req.body;
     const user = await userService.create(userData);
-
     const token = JWTgenerate({ user }, jwtConfig, secret);
-
-    return res.status(codes.created).json({ token });
+      return res.status(codes.created).json({ token });
   } catch (error) {
     const { code, message } = error;
-    return res.status(code).json({ message });
+      return res.status(code).json({ message });
   }
 };
 
@@ -27,19 +25,17 @@ const createLogin = async (req, res) => {
   try {
     const loginData = req.body;
     const user = await userService.createLogin(loginData);
-
     const token = JWTgenerate({ user }, jwtConfig, secret);
-
-    return res.status(codes.ok).json({ token });
+      return res.status(codes.ok).json({ token });
   } catch (error) {
     const { code, message } = error;
-    return res.status(code).json({ message });
+      return res.status(code).json({ message });
   }
 };
 
 const getUsers = async (_req, res) => {
   try {
-      const users = await userService.getUsers();
+    const users = await userService.getUsers();
       return res.status(codes.ok).json(users);
   } catch (error) {
     const { code, message } = error;
@@ -58,7 +54,6 @@ const getById = async (req, res) => {
   }
 };
 
-
 const removeUser = async (req, res) => {
   const { id } = req.user;
   try {
@@ -66,11 +61,14 @@ const removeUser = async (req, res) => {
     res.status(codes.noContent).json(user);
   } catch (error) {
     const { code, message } = error;
-    return res.status(code).json({ message });
+      return res.status(code).json({ message });
   }
 };
 
-
-
-
-module.exports = { create, createLogin, getUsers, getById, removeUser };
+module.exports = {
+  create,
+  createLogin,
+  getUsers,
+  getById,
+  removeUser,
+};
