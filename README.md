@@ -12,7 +12,5 @@
 
 ● npm install
 
-## Para rodar os testes:
-● npm test
 
 Desenvolvido por Bruna Ferreira
