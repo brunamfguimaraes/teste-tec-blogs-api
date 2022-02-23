@@ -11,4 +11,8 @@
 ● git clone https://github.com/brunamfguimaraes/teste-tec-blogs-api.git
 
 
+## Para rodar os testes:
+● npm test
+
+
 Desenvolvido por Bruna Ferreira
