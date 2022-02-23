@@ -1,9 +1,9 @@
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  up: async (queryInterface, _Sequelize) => {
     await queryInterface.bulkInsert('Posts',
       [
         {
-          id: 7706273476706534553,
+          id: 77062736534553,
           title: "Latest updates, August 1st",
           content: "The whole text for the blog post goes here in this key",
           userId: 401465483996,
