@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { Post, User } = require('../database/models');
 const codes = require('../middlewares/codes');
 const errorMessages = require('../middlewares/errorMessages');
@@ -62,10 +63,28 @@ const deletePost = async (id, idUser) => {
   return removeUser;
 };
 
+
+const getByQueryParam = async (query) => {
+  if (!query) return getAllPosts();
+
+  return Post.findAll({
+    where: {
+      [Op.or]: [
+        { title: { [Op.like]: `%${query}%` } },
+        { content: { [Op.like]: `%${query}%` } },
+      ],
+    },
+    include: [
+      { model: User, as: 'user' },
+    ],
+  });
+};
+
 module.exports = {
   createPost,
   getAllPosts,
   getPostId,
   updatePost,
   deletePost,
+  getByQueryParam,
 };
